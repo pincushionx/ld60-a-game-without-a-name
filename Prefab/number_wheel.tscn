@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c134eb7r8062m"]
+
+[ext_resource type="Script" uid="uid://g7bxqgijuh2e" path="res://Scripts/Console/number_wheel.gd" id="1_d2i3r"]
+[ext_resource type="PackedScene" uid="uid://hrs3hprgjxmi" path="res://Models/NumberWheel.glb" id="2_2o2db"]
+
+[node name="NumberWheel" type="Node3D" unique_id=2003325476]
+script = ExtResource("1_d2i3r")
+
+[node name="Model" type="Node3D" parent="." unique_id=1014219644]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="NumberWheel2" parent="Model" unique_id=1360533562 instance=ExtResource("2_2o2db")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)

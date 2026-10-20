@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bn24qn0tqexn1"]
+
+[sub_resource type="Curve" id="Curve_uphwm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.62385327, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.08988774), -0.1827939, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1yh04"]
+curve = SubResource("Curve_uphwm")
+
+[sub_resource type="CurveTexture" id="CurveTexture_y3p1y"]
+
+[sub_resource type="Curve" id="Curve_n7ndb"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.94382036), 0.0, 3.534723, 0, 0, Vector2(0.96811587, 5), 0.0, 0.0, 0, 0, Vector2(1, 5), 13.450285, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_56eqt"]
+curve = SubResource("Curve_n7ndb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bx76v"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 1, 0)
+radial_accel_min = 0.99999774
+radial_accel_max = 0.99999774
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_56eqt")
+color = Color(0.8368918, 0.5424729, 0, 1)
+alpha_curve = SubResource("CurveTexture_1yh04")
+emission_curve = SubResource("CurveTexture_y3p1y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riyl1"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+distance_fade_max_distance = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_3u6dk"]
+material = SubResource("StandardMaterial3D_riyl1")
+radial_segments = 12
+rings = 6
+
+[node name="DestroyFire" type="GPUParticles3D" unique_id=1799666297]
+cast_shadow = 0
+amount = 96
+lifetime = 2.5
+visibility_aabb = AABB(-8, -4, -8, 16, 16, 16)
+trail_lifetime = 1.7
+process_material = SubResource("ParticleProcessMaterial_bx76v")
+draw_pass_1 = SubResource("SphereMesh_3u6dk")

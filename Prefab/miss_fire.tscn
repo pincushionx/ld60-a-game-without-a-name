@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://derjwjxiay54o"]
+
+[sub_resource type="Curve" id="Curve_n8406"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.62385327, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.08988774), -0.1827939, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3tx4l"]
+curve = SubResource("Curve_n8406")
+
+[sub_resource type="CurveTexture" id="CurveTexture_i8oiq"]
+
+[sub_resource type="Curve" id="Curve_bil13"]
+_limits = [0.0, 5.1851854, 0.0, 1.0]
+_data = [Vector2(0, 0.94382036), 0.0, 19.897572, 0, 0, Vector2(0.9942029, 5.1851854), 2.3232336, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_os1cv"]
+curve = SubResource("Curve_bil13")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a6q8r"]
+angle_min = -29.99999
+angle_max = 30.000011
+velocity_pivot = Vector3(0, 0.01, 0)
+direction = Vector3(0.01, 1, 0.01)
+initial_velocity_min = 0.01
+initial_velocity_max = 0.02
+gravity = Vector3(0, 0.01, 0)
+radial_accel_min = 0.99999774
+radial_accel_max = 0.99999774
+scale_min = 0.099999994
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_os1cv")
+color = Color(0.29367933, 0.21854317, 0, 1)
+alpha_curve = SubResource("CurveTexture_3tx4l")
+emission_curve = SubResource("CurveTexture_i8oiq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riyl1"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+distance_fade_max_distance = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_3u6dk"]
+material = SubResource("StandardMaterial3D_riyl1")
+radial_segments = 12
+rings = 6
+
+[node name="MissFire" type="GPUParticles3D" unique_id=1344900095]
+cast_shadow = 0
+amount = 25
+lifetime = 2.0
+visibility_aabb = AABB(-4, -2, -4, 8, 8, 8)
+trail_lifetime = 1.7
+process_material = SubResource("ParticleProcessMaterial_a6q8r")
+draw_pass_1 = SubResource("SphereMesh_3u6dk")

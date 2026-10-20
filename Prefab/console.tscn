@@ -1,0 +1,225 @@
+[gd_scene format=3 uid="uid://b31yoma1d8cov"]
+
+[ext_resource type="Script" uid="uid://bfxtekpls0c6a" path="res://Scripts/Console/console.gd" id="1_loumg"]
+[ext_resource type="FontFile" uid="uid://d1pasrx3s2324" path="res://Font/army_rust/ARMY RUST.ttf" id="2_m4rfm"]
+[ext_resource type="Script" uid="uid://mmxwaynu4n7f" path="res://Scripts/Console/console_light.gd" id="3_ggy2g"]
+[ext_resource type="Material" uid="uid://b74ou1bslq8nb" path="res://Material/Light_Green_On.tres" id="4_02u08"]
+[ext_resource type="Material" uid="uid://deee1vkbb5q5l" path="res://Material/Red_Green_On.tres" id="4_odfbj"]
+[ext_resource type="Material" uid="uid://b3isth5pbjc1k" path="res://Material/Light_Green_Off.tres" id="5_odfbj"]
+[ext_resource type="Script" uid="uid://d3idivqmx775g" path="res://Scripts/Console/console_light_group.gd" id="6_4se6h"]
+[ext_resource type="Script" uid="uid://fajifqlcoep5" path="res://Scripts/Console/console_target.gd" id="7_fhaci"]
+[ext_resource type="PackedScene" uid="uid://d16duxrjgjhqp" path="res://Models/Panel.glb" id="8_02u08"]
+[ext_resource type="Script" uid="uid://bk7mkq70cdmc" path="res://Scripts/Console/console_numbers.gd" id="8_ggy2g"]
+[ext_resource type="PackedScene" uid="uid://c134eb7r8062m" path="res://Prefab/number_wheel.tscn" id="9_02u08"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pib28"]
+size = Vector3(0.68408203, 0.41607666, 0.1)
+
+[node name="Console" type="Node3D" unique_id=1804614263]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("1_loumg")
+
+[node name="DebugLabel" type="Label3D" parent="." unique_id=1027731758]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.037437968, 0.17001687, 4.6566126e-10)
+visible = false
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Elevation: 99.99
+Elevation: 99.99
+Elevation: 99.99"
+font = ExtResource("2_m4rfm")
+
+[node name="YourTurnLight" type="Node3D" parent="." unique_id=519960530]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.14635424, -0.011217043, 0)
+visible = false
+script = ExtResource("3_ggy2g")
+
+[node name="Models" type="Node3D" parent="YourTurnLight" unique_id=1786770129]
+
+[node name="On" type="CSGBox3D" parent="YourTurnLight/Models" unique_id=865611241]
+size = Vector3(0.1, 0.1, 0.01)
+material = ExtResource("4_odfbj")
+
+[node name="Off" type="CSGBox3D" parent="YourTurnLight/Models" unique_id=202698499]
+size = Vector3(0.1, 0.1, 0.01)
+material = ExtResource("5_odfbj")
+
+[node name="Label" type="Label3D" parent="YourTurnLight" unique_id=412655575]
+transform = Transform3D(1, -2.9802322e-08, 2.9802322e-08, 1.4901161e-08, 0.9999999, -2.9802322e-08, 1.4901161e-08, 2.9802322e-08, 0.9999999, 4.0411352e-10, 0.0742527, -6.3694416e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Your Turn"
+font = ExtResource("2_m4rfm")
+
+[node name="EnemyTurnLight" type="Node3D" parent="." unique_id=470802082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14635426, -0.17245668, -0.011035919)
+script = ExtResource("3_ggy2g")
+
+[node name="Models" type="Node3D" parent="EnemyTurnLight" unique_id=1235910982]
+
+[node name="On" type="CSGBox3D" parent="EnemyTurnLight/Models" unique_id=431296984]
+size = Vector3(0.1, 0.1, 0.01)
+material = ExtResource("4_odfbj")
+
+[node name="Off" type="CSGBox3D" parent="EnemyTurnLight/Models" unique_id=587857102]
+size = Vector3(0.1, 0.1, 0.01)
+material = ExtResource("5_odfbj")
+
+[node name="Label" type="Label3D" parent="EnemyTurnLight" unique_id=116197341]
+transform = Transform3D(1, -2.9802322e-08, 2.9802322e-08, 1.4901161e-08, 0.9999999, -2.9802322e-08, 1.4901161e-08, 2.9802322e-08, 0.9999999, 4.0411352e-10, 0.0742527, -6.3694416e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Enemy Turn"
+font = ExtResource("2_m4rfm")
+
+[node name="AmmoLights" type="Node3D" parent="." unique_id=10716011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35435453, -0.13793606, -0.011035914)
+script = ExtResource("6_4se6h")
+
+[node name="AmmoLight1" type="Node3D" parent="AmmoLights" unique_id=1987202310]
+transform = Transform3D(1, -1.4901161e-08, 2.9802322e-08, 1.4901161e-08, 1, -2.9802322e-08, 1.4901161e-08, 0, 1, -0.075, -0.056, 0)
+script = ExtResource("3_ggy2g")
+
+[node name="Models" type="Node3D" parent="AmmoLights/AmmoLight1" unique_id=322984626]
+
+[node name="On" type="CSGBox3D" parent="AmmoLights/AmmoLight1/Models" unique_id=1904955555]
+size = Vector3(0.05, 0.05, 0.01)
+material = ExtResource("4_02u08")
+
+[node name="Off" type="CSGBox3D" parent="AmmoLights/AmmoLight1/Models" unique_id=812135500]
+size = Vector3(0.05, 0.05, 0.01)
+material = ExtResource("5_odfbj")
+
+[node name="AmmoLight2" type="Node3D" parent="AmmoLights" unique_id=1931401735]
+transform = Transform3D(1, -1.4901161e-08, 2.9802322e-08, 1.4901161e-08, 1, -2.9802322e-08, 1.4901161e-08, 0, 1, 1.296272e-09, -0.055741336, -9.214163e-10)
+script = ExtResource("3_ggy2g")
+
+[node name="Models" type="Node3D" parent="AmmoLights/AmmoLight2" unique_id=2108071697]
+
+[node name="On" type="CSGBox3D" parent="AmmoLights/AmmoLight2/Models" unique_id=1617688122]
+size = Vector3(0.05, 0.05, 0.01)
+material = ExtResource("4_02u08")
+
+[node name="Off" type="CSGBox3D" parent="AmmoLights/AmmoLight2/Models" unique_id=109600905]
+size = Vector3(0.05, 0.05, 0.01)
+material = ExtResource("5_odfbj")
+
+[node name="AmmoLight3" type="Node3D" parent="AmmoLights" unique_id=1749455794]
+transform = Transform3D(1, -1.4901161e-08, 2.9802322e-08, 1.4901161e-08, 1, -2.9802322e-08, 1.4901161e-08, 0, 1, 0.075, -0.056, 0)
+script = ExtResource("3_ggy2g")
+
+[node name="Models" type="Node3D" parent="AmmoLights/AmmoLight3" unique_id=877250519]
+
+[node name="On" type="CSGBox3D" parent="AmmoLights/AmmoLight3/Models" unique_id=273961271]
+size = Vector3(0.05, 0.05, 0.01)
+material = ExtResource("4_02u08")
+
+[node name="Off" type="CSGBox3D" parent="AmmoLights/AmmoLight3/Models" unique_id=2107449125]
+size = Vector3(0.05, 0.05, 0.01)
+material = ExtResource("5_odfbj")
+
+[node name="Label" type="Label3D" parent="AmmoLights" unique_id=1915475492]
+transform = Transform3D(1, -4.4703484e-08, 1.0430813e-07, 4.4703484e-08, 0.9999999, -5.9604645e-08, 1.4901161e-08, 0, 0.9999998, 2.4987912e-10, -0.006891783, 2.328306e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Ammunition"
+font = ExtResource("2_m4rfm")
+
+[node name="Backpanel" type="Area3D" parent="." unique_id=333975153]
+script = ExtResource("7_fhaci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Backpanel" unique_id=837223187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15795892, -0.09659004, -0.09435701)
+shape = SubResource("BoxShape3D_pib28")
+
+[node name="Panel" parent="Backpanel" unique_id=934460946 instance=ExtResource("8_02u08")]
+transform = Transform3D(0.65, 0, 0, 0, 0.7, 0, 0, 0, 0.25, -0.17032242, -0.07179166, -0.019863129)
+
+[node name="ElevationNumbers" type="Node3D" parent="." unique_id=941380861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08132288, 0.03494445, -0.012527466)
+script = ExtResource("8_ggy2g")
+
+[node name="Wheels" type="Node3D" parent="ElevationNumbers" unique_id=15536430]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.011673003, 0, -0.045822546)
+
+[node name="NumberWheel" parent="ElevationNumbers/Wheels" unique_id=2003325476 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="NumberWheel2" parent="ElevationNumbers/Wheels" unique_id=2080417739 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.1295528, 0, 0)
+
+[node name="Label" type="Label3D" parent="ElevationNumbers" unique_id=1048753979]
+transform = Transform3D(1, -4.4703484e-08, 1.0430813e-07, 4.4703484e-08, 0.9999999, -5.9604645e-08, 1.4901161e-08, 0, 0.9999998, -0.0328064, 0.03428046, -2.5602287e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Elevation"
+font = ExtResource("2_m4rfm")
+
+[node name="ScoreNumbers" type="Node3D" parent="." unique_id=1179923234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3490055, 0.03494445, -0.012527466)
+script = ExtResource("8_ggy2g")
+
+[node name="Wheels" type="Node3D" parent="ScoreNumbers" unique_id=2089146287]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.011673003, 0, -0.045822546)
+
+[node name="NumberWheel" parent="ScoreNumbers/Wheels" unique_id=1147288822 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="NumberWheel2" parent="ScoreNumbers/Wheels" unique_id=721543145 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.1295528, 0, 0)
+
+[node name="NumberWheel3" parent="ScoreNumbers/Wheels" unique_id=1370036620 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.25683594, 0, 0)
+
+[node name="NumberWheel4" parent="ScoreNumbers/Wheels" unique_id=439881807 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.38638872, 0, 0)
+
+[node name="Label" type="Label3D" parent="ScoreNumbers" unique_id=973895045]
+transform = Transform3D(1, -4.4703484e-08, 1.0430813e-07, 4.4703484e-08, 0.9999999, -5.9604645e-08, 1.4901161e-08, 0, 0.9999998, -0.063659675, 0.03428046, -7.157725e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Score"
+font = ExtResource("2_m4rfm")
+
+[node name="BearingNumbers" type="Node3D" parent="." unique_id=685824498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08080383, -0.06379384, -0.012527466)
+script = ExtResource("8_ggy2g")
+
+[node name="Wheels" type="Node3D" parent="BearingNumbers" unique_id=1629921026]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.011673003, 0, -0.045822546)
+
+[node name="NumberWheel" parent="BearingNumbers/Wheels" unique_id=1661090923 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="NumberWheel2" parent="BearingNumbers/Wheels" unique_id=278960687 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.1295528, 0, 0)
+
+[node name="NumberWheel3" parent="BearingNumbers/Wheels" unique_id=1050538638 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.26, 0, 0)
+
+[node name="Label" type="Label3D" parent="BearingNumbers" unique_id=1850837725]
+transform = Transform3D(1, -4.4703484e-08, 1.0430813e-07, 4.4703484e-08, 0.9999999, -5.9604645e-08, 1.4901161e-08, 0, 0.9999998, -0.022665028, 0.036999803, -1.049046e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Bearing"
+font = ExtResource("2_m4rfm")
+
+[node name="PropellantNumbers" type="Node3D" parent="." unique_id=1433130423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08076533, -0.16465497, -0.012527466)
+script = ExtResource("8_ggy2g")
+
+[node name="Wheels" type="Node3D" parent="PropellantNumbers" unique_id=573816730]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.011673003, 0, -0.045822546)
+
+[node name="NumberWheel" parent="PropellantNumbers/Wheels" unique_id=933077424 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="NumberWheel2" parent="PropellantNumbers/Wheels" unique_id=1157207297 instance=ExtResource("9_02u08")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.1295528, 0, 0)
+
+[node name="Label" type="Label3D" parent="PropellantNumbers" unique_id=826253064]
+transform = Transform3D(1, -4.4703484e-08, 1.0430813e-07, 4.4703484e-08, 0.9999999, -5.9604645e-08, 1.4901161e-08, 0, 0.9999998, -0.04592705, 0.03938962, -4.515358e-10)
+pixel_size = 0.001
+outline_modulate = Color(0, 0, 0, 0)
+text = "Propellant"
+font = ExtResource("2_m4rfm")

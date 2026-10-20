@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cgr6ek20kfa3k"]
+
+[ext_resource type="Shader" uid="uid://cgr0m1mcsbvb0" path="res://Material/Terrain/tri-shader.gdshader" id="1_uwfln"]
+[ext_resource type="Texture2D" uid="uid://bmiywdc6eyjdh" path="res://Material/Terrain/grass2.png" id="2_7w8ta"]
+[ext_resource type="Texture2D" uid="uid://r8625hn14erg" path="res://Material/Terrain/stone2.png" id="3_6x2i3"]
+[ext_resource type="Texture2D" uid="uid://dga2n52sva54d" path="res://Material/Terrain/dirt.png" id="4_7w8ta"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uwfln")
+shader_parameter/texture_water = ExtResource("4_7w8ta")
+shader_parameter/texture_grass = ExtResource("2_7w8ta")
+shader_parameter/texture_mountain = ExtResource("3_6x2i3")
+shader_parameter/texture_scale = Vector3(0.005, 0.005, 0.005)
+shader_parameter/water_level = 4.0
+shader_parameter/mountain_level = 7.0
+shader_parameter/blend_sharpness = 1.0

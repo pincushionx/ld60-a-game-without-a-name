@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c74stdnevqkpo"]
+
+[sub_resource type="Curve" id="Curve_axcr2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.62385327, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.08988774), -0.1827939, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_24o0o"]
+curve = SubResource("Curve_axcr2")
+
+[sub_resource type="Curve" id="Curve_50k3d"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.94382036), 0.0, 0.24804431, 0, 0, Vector2(1, 2), 1.6796148, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_64sqp"]
+curve = SubResource("Curve_50k3d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gkwss"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.13
+initial_velocity_max = 0.25
+gravity = Vector3(0, 0.5, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 0.24999776
+scale_curve = SubResource("CurveTexture_64sqp")
+color = Color(0.2159017, 0.21590173, 0.21590167, 1)
+alpha_curve = SubResource("CurveTexture_24o0o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8406"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+distance_fade_max_distance = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_j853f"]
+material = SubResource("StandardMaterial3D_n8406")
+radial_segments = 12
+rings = 6
+
+[node name="Smoke" type="GPUParticles3D" unique_id=1862581324]
+cast_shadow = 0
+emitting = false
+amount = 24
+lifetime = 5.0
+visibility_aabb = AABB(0, 0, 0, 5, 5, 5)
+trail_lifetime = 1.7
+process_material = SubResource("ParticleProcessMaterial_gkwss")
+draw_pass_1 = SubResource("SphereMesh_j853f")
